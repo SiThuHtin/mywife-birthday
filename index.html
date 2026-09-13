@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Birthday, My Wife 🌸</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --rose:   #e8687a;
+      --gold:   #c9964a;
+      --cream:  #fdf8f5;
+      --blush:  #fce8ee;
+      --deep:   #3a1a2e;
+      --muted:  #7a5060;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--cream);
+      color: var(--deep);
+      font-family: 'Lato', sans-serif;
+      font-weight: 300;
+      overflow-x: hidden;
+    }
+
+    /* ─── FLOATING PETALS ───────────────────────── */
+    #petals {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .petal {
+      position: absolute;
+      top: -60px;
+      font-size: 1.4rem;
+      opacity: 0;
+      animation: fall linear infinite;
+      user-select: none;
+    }
+    @keyframes fall {
+      0%   { transform: translateY(0) rotate(0deg); opacity: 0.9; }
+      100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+    }
+
+    /* ─── HERO ──────────────────────────────────── */
+    #hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 40px 24px;
+      background: linear-gradient(160deg, #fff0f5 0%, #fce8ee 50%, #fff5e0 100%);
+      overflow: hidden;
+    }
+
+    #hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 60%, transparent 40%, rgba(255,255,255,.5) 100%);
+      pointer-events: none;
+    }
+
+    .hero-badge {
+      font-size: .8rem;
+      letter-spacing: .25em;
+      text-transform: uppercase;
+      color: var(--rose);
+      margin-bottom: 18px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-name {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3rem, 9vw, 7rem);
+      font-weight: 700;
+      color: var(--deep);
+      line-height: 1.1;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-name span {
+      color: var(--rose);
+      font-style: italic;
+    }
+
+    .hero-nickname {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: clamp(1.3rem, 3.5vw, 2rem);
+      color: var(--gold);
+      margin-top: 8px;
+      letter-spacing: .05em;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-sub {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: clamp(1.1rem, 3vw, 1.6rem);
+      color: var(--muted);
+      margin-top: 16px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .heart-divider {
+      margin: 28px 0;
+      font-size: 1.6rem;
+      letter-spacing: 8px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      color: var(--muted);
+      font-size: .75rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      z-index: 1;
+      animation: bounce 2s ease-in-out infinite;
+    }
+    .scroll-hint::after {
+      content: '↓';
+      font-size: 1.2rem;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50%       { transform: translateX(-50%) translateY(8px); }
+    }
+
+    /* ─── SECTIONS ──────────────────────────────── */
+    section {
+      position: relative;
+      z-index: 1;
+    }
+
+    .section-label {
+      font-size: .75rem;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      color: var(--rose);
+      margin-bottom: 10px;
+    }
+
+    /* ─── MESSAGE ───────────────────────────────── */
+    #message {
+      background: #fff;
+      padding: 80px 24px;
+      text-align: center;
+    }
+    #message .inner {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    #message h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      color: var(--deep);
+      margin-bottom: 28px;
+    }
+    #message p {
+      font-size: 1.1rem;
+      line-height: 1.9;
+      color: var(--muted);
+      margin-bottom: 18px;
+    }
+    .signature {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.3rem;
+      color: var(--rose);
+      margin-top: 36px;
+    }
+
+    /* ─── GALLERY ───────────────────────────────── */
+    .gallery-section {
+      padding: 70px 16px;
+    }
+    .gallery-section:nth-child(odd)  { background: var(--blush); }
+    .gallery-section:nth-child(even) { background: #fff; }
+
+    .gallery-section .top {
+      text-align: center;
+      margin-bottom: 36px;
+    }
+    .gallery-section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+      color: var(--deep);
+    }
+    .gallery-section .top p {
+      color: var(--muted);
+      font-size: .95rem;
+      margin-top: 6px;
+    }
+
+    .photo-grid {
+      columns: 3 280px;
+      column-gap: 12px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .photo-item {
+      break-inside: avoid;
+      margin-bottom: 12px;
+      overflow: hidden;
+      border-radius: 12px;
+      cursor: pointer;
+      position: relative;
+    }
+    .photo-item img {
+      width: 100%;
+      display: block;
+      border-radius: 12px;
+      transition: transform .4s ease, filter .4s ease;
+      filter: saturate(1.05) brightness(1.02);
+    }
+    .photo-item:hover img {
+      transform: scale(1.04);
+      filter: saturate(1.15) brightness(1.05);
+    }
+    .photo-item::after {
+      content: '🔍';
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      background: rgba(232,104,122,.15);
+      opacity: 0;
+      transition: opacity .3s;
+      border-radius: 12px;
+    }
+    .photo-item:hover::after { opacity: 1; }
+
+    /* ─── BIRTHDAY WISH ────────────────────────── */
+    #wish {
+      background: linear-gradient(135deg, #3a1a2e 0%, #5a2a42 100%);
+      padding: 80px 24px;
+      color: #fff;
+    }
+    #wish .inner {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      gap: 48px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    #wish .wish-photo {
+      flex: 0 0 320px;
+      max-width: 320px;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,.5);
+    }
+    #wish .wish-photo img {
+      width: 100%;
+      display: block;
+    }
+    #wish .wish-photo.placeholder {
+      aspect-ratio: 3/4;
+      background: rgba(255,255,255,.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255,255,255,.3);
+      font-size: .85rem;
+      text-align: center;
+      padding: 16px;
+    }
+    #wish .wish-text {
+      flex: 1;
+      min-width: 260px;
+    }
+    #wish .wish-text .section-label {
+      color: var(--rose);
+    }
+    #wish .wish-text h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+      color: #fff;
+      margin-bottom: 24px;
+    }
+    #wish .wish-text p {
+      font-size: 1.05rem;
+      line-height: 2;
+      color: rgba(255,255,255,.8);
+      margin-bottom: 16px;
+    }
+    #wish .wish-hearts {
+      font-size: 1.5rem;
+      margin-top: 20px;
+    }
+    @media (max-width: 680px) {
+      #wish .inner { flex-direction: column; }
+      #wish .wish-photo { flex: unset; max-width: 100%; width: 100%; }
+    }
+
+    /* ─── LIGHTBOX ──────────────────────────────── */
+    #lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(20,5,15,.92);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+    }
+    #lightbox.open { display: flex; }
+    #lightbox img {
+      max-width: 92vw;
+      max-height: 90vh;
+      object-fit: contain;
+      border-radius: 8px;
+      box-shadow: 0 20px 80px rgba(0,0,0,.7);
+      animation: zoomin .25s ease;
+    }
+    @keyframes zoomin {
+      from { transform: scale(.88); opacity: 0; }
+      to   { transform: scale(1);   opacity: 1; }
+    }
+    #lightbox .lb-close {
+      position: absolute;
+      top: 20px; right: 24px;
+      font-size: 2rem;
+      color: #fff;
+      cursor: pointer;
+      background: none; border: none;
+      opacity: .7;
+      transition: opacity .2s;
+    }
+    #lightbox .lb-close:hover { opacity: 1; }
+    #lightbox .lb-prev,
+    #lightbox .lb-next {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 2.5rem;
+      color: #fff;
+      background: rgba(255,255,255,.1);
+      border: none;
+      border-radius: 50%;
+      width: 52px; height: 52px;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background .2s;
+    }
+    #lightbox .lb-prev { left: 16px; }
+    #lightbox .lb-next { right: 16px; }
+    #lightbox .lb-prev:hover,
+    #lightbox .lb-next:hover { background: rgba(255,255,255,.25); }
+
+    /* ─── FOOTER ────────────────────────────────── */
+    footer {
+      background: var(--deep);
+      color: rgba(255,255,255,.6);
+      text-align: center;
+      padding: 40px 24px;
+      font-size: .85rem;
+      letter-spacing: .05em;
+    }
+    footer .big {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      color: var(--rose);
+      margin-bottom: 12px;
+    }
+
+    /* ─── ANIMATIONS ON SCROLL ──────────────────── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: none;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Floating petals -->
+<div id="petals"></div>
+
+<!-- HERO -->
+<section id="hero">
+  <p class="hero-badge">A special day for a special someone ✨</p>
+  <h1 class="hero-name">Happy Birthday<br /><span>My Wife</span></h1>
+  <p class="hero-nickname">A Chaw Lay</p>
+  <p class="hero-sub">Today the whole world smiles because of you.</p>
+  <div class="heart-divider">🌸 💕 🌸</div>
+  <div class="scroll-hint">Scroll to explore</div>
+</section>
+
+<!-- BIRTHDAY WISH -->
+<section id="wish">
+  <div class="inner fade-up">
+    <div class="wish-photo" id="wishPhotoWrap">
+      <img src="photos/baby/Image_20260913_231309_737.jpeg" alt="Our family" />
+    </div>
+    <div class="wish-text">
+      <p class="section-label">မွေးနေ့ဆုတောင်း💌</p>
+      <h2>Happy Birthday ပါ မိန်းမရေ</h2>
+      <p>ဒီနှစ်မွေးနေ့ကတော့ အရင်နှစ်တွေကလို ရည်းစားဘဝမဟုတ်တော့ပဲ လင်မယားဘဝ၊ ကလေးအဖေနဲ့ကလေးအမေဘဝ — ချစ်စရာကောင်းတဲ့ သမီးလေးနဲ့ ပထမဆုံးဖြတ်သန်းရတဲ့ မိန်းမရဲ့ အမှတ်တရမွေးနေ့လေး ဖြစ်လိမ့်မယ်လို့ ယူဆပါတယ်။</p>
+      <p>ဒီနှစ်မွေးနေ့ကစလို့ နောက်နှစ်ပေါင်းများစွာတိုင်အောင် ယောက်ျားရယ် သမီးလေးရယ်နဲ့ ပျော်ပျော်ရွှင်ရွှင် တူတူဖြတ်သန်းကြမယ်နော်။</p>
+      <p>ကျန်းကျန်းမာမာ ချမ်းချမ်းသာသာနဲ့ လိုအင်ဆန္ဒတွေ အကုန်လုံးပြည့်စုံပါစေလို့ ယောက်ျားဆုတောင်းပေးပါတယ်။</p>
+      <div class="wish-hearts">♥️ ♥️ ♥️</div>
+    </div>
+  </div>
+</section>
+
+<!-- MESSAGE -->
+<section id="message">
+  <div class="inner fade-up">
+    <p class="section-label">A note from the heart</p>
+    <h2>To the light of my life</h2>
+    <p>
+      Every single day with you is a gift I never stop being grateful for.
+      You make ordinary moments extraordinary just by being in them.
+      Your laughter, your kindness, your warmth — they colour every corner of my world.
+    </p>
+    <p>
+      And then there is our little treasure, <strong>Khin Chan Mya Thu</strong> —
+      the most beautiful proof of how beautiful our love is.
+      Watching you be her mother fills my heart with a joy I have no words for.
+      You are everything to her, and she is so lucky to call you Mama.
+    </p>
+    <p>
+      On this beautiful day, both Khin Chan Mya Thu and I want you to know
+      how deeply loved and cherished you are.
+      Not just today, but every day — yesterday, now, and every tomorrow to come.
+    </p>
+    <p>
+      Thank you for being you. Thank you for being ours.
+    </p>
+    <div class="signature">With all my love, always 💕</div>
+  </div>
+</section>
+
+<!-- GALLERY: She Shines -->
+<section class="gallery-section">
+  <div class="top fade-up">
+    <p class="section-label">She Shines ✨</p>
+    <h2>Her beautiful moments</h2>
+    <p>The woman who lights up every room she walks into</p>
+  </div>
+  <div class="photo-grid" id="grid-her"></div>
+</section>
+
+<!-- GALLERY: Just Us -->
+<section class="gallery-section">
+  <div class="top fade-up">
+    <p class="section-label">Just Us 💕</p>
+    <h2>Our story together</h2>
+    <p>Every chapter, every smile, every adventure — yours and mine</p>
+  </div>
+  <div class="photo-grid" id="grid-us"></div>
+</section>
+
+<!-- GALLERY: Welcome Little One -->
+<section class="gallery-section">
+  <div class="top fade-up">
+    <p class="section-label">Welcome, Little One 👶</p>
+    <h2>Khin Chan Mya Thu</h2>
+    <p>The greatest thing we ever made — together</p>
+  </div>
+  <div class="photo-grid" id="grid-baby"></div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="big">🌸 Happy Birthday, My Wife 🌸</div>
+  <p>Made with love &amp; so many heart emojis 💕</p>
+</footer>
+
+<!-- LIGHTBOX -->
+<div id="lightbox">
+  <button class="lb-close" id="lbClose">✕</button>
+  <button class="lb-prev" id="lbPrev">‹</button>
+  <img id="lbImg" src="" alt="" />
+  <button class="lb-next" id="lbNext">›</button>
+</div>
+
+<script>
+  /* ── Petal rain ────────────────────────────── */
+  const petalChars = ['🌸','🌺','💕','🌹','✨','💖','🦋'];
+  const petalEl = document.getElementById('petals');
+  function spawnPetal() {
+    const p = document.createElement('span');
+    p.className = 'petal';
+    p.textContent = petalChars[Math.floor(Math.random() * petalChars.length)];
+    p.style.left = Math.random() * 100 + 'vw';
+    const dur = 6 + Math.random() * 8;
+    const delay = Math.random() * 4;
+    p.style.animationDuration = dur + 's';
+    p.style.animationDelay = delay + 's';
+    p.style.fontSize = (.9 + Math.random() * .9) + 'rem';
+    petalEl.appendChild(p);
+    setTimeout(() => p.remove(), (dur + delay) * 1000 + 200);
+  }
+  for (let i = 0; i < 18; i++) spawnPetal();
+  setInterval(spawnPetal, 600);
+
+  /* ── Gallery ───────────────────────────────── */
+  // ── ADD PHOTOS HERE ─────────────────────────────────────────────────────
+  // To add a new photo, just drop the file into the matching folder and
+  // add one line below: "photos/her/filename.jpg",
+  // ─────────────────────────────────────────────────────────────────────────
+
+  const sections = [
+    {
+      id: 'grid-her',
+      // 📁 Drop new photos into:  birthday_site/photos/her/
+      photos: [
+        "photos/her/IMG_1806.jpg",
+        "photos/her/IMG_6571.jpg",
+        "photos/her/IMG_8483.jpg",
+        "photos/her/IMG_8563.jpg",
+        "photos/her/IMG_7170.jpg",
+        "photos/her/IMG_8589.jpg",
+        "photos/her/IMG_8057.jpg",
+        "photos/her/IMG_8600.jpg",
+        "photos/her/IMG_4529.jpg",
+        "photos/her/IMG_8566.jpg",
+        "photos/her/IMG_8809.jpg",
+        "photos/her/IMG_8484.jpg",
+        "photos/her/IMG_9361.jpg",
+        // ← add more "her" photos here
+      ]
+    },
+    {
+      id: 'grid-us',
+      // 📁 Drop new photos into:  birthday_site/photos/us/
+      photos: [
+        "photos/us/DSCF9479_SnapseedCopy.jpg",
+        "photos/us/DSCF9525_SnapseedCopy.jpg",
+        "photos/us/DSCF9654_SnapseedCopy.jpg",
+        "photos/us/DSCF9675_SnapseedCopy.jpg",
+        "photos/us/att_RZyAJX0a1fDlpCTQ0JaJkgDm3YOjbRvIyGTWahrPRwI.jpg",
+        "photos/us/IMG_9131.jpg",
+        "photos/us/att_ahMzfyJ2T4FlB8l8x9q9LNIy3WcNvA2eh4h7VRoVOYk.jpg",
+        "photos/us/IMG_6471.jpg",
+        "photos/us/IMG_6557.jpg",
+        "photos/us/att_EWy6i7we93Ff7hZaHjXcoe-yb16Mq5BwmR98b0fKBhY.jpg",
+        "photos/us/IMG_8788.jpg",
+        "photos/us/IMG_8811.jpg",
+        "photos/us/IMG_9495.jpg",
+        "photos/us/att_Rxqiu-fnwZhXt0_FwwFrLUlKBie74svCCdhKHilz5qE.jpg",
+        "photos/us/IMG_9805.jpg",
+        // ← add more "us" photos here
+      ]
+    },
+    {
+      id: 'grid-baby',
+      // 📁 Drop new photos into:  birthday_site/photos/baby/
+      photos: [
+        "photos/baby/IMG_9707.jpg",
+        "photos/baby/att__BK6rDwgWw7PItECoONT6jzVud484aCItsAq-svpR6c.jpg",
+        "photos/baby/IMG_0116.jpg",
+        "photos/baby/att_KpJR0VDq5xuVOhMtfSYpQn4Ejw6IXB_KrMhDwyYSb0k.jpg",
+        "photos/baby/EF80816F-96C1-4050-BB34-DCA4555B85B4.jpg",
+        "photos/baby/IMG_0201.jpg",
+        "photos/baby/att.Bq2IBzBtKzPnExqaaQinbC-Vr5KbKDm-vQCOG_sgW1s.jpg",
+        // ← add more "baby" photos here
+      ]
+    }
+  ];
+
+  // Flatten all photos for lightbox navigation
+  const allPhotos = sections.flatMap(s => s.photos);
+
+  sections.forEach(({ id, photos }) => {
+    const grid = document.getElementById(id);
+    photos.forEach(src => {
+      const globalIdx = allPhotos.indexOf(src);
+      const item = document.createElement('div');
+      item.className = 'photo-item';
+      const img = document.createElement('img');
+      img.src = src;
+      img.alt = '';
+      img.loading = 'lazy';
+      item.appendChild(img);
+      item.addEventListener('click', () => openLightbox(globalIdx));
+      grid.appendChild(item);
+    });
+  });
+
+  /* ── Lightbox ──────────────────────────────── */
+  let lbIndex = 0;
+  const lb = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lbImg');
+
+  function openLightbox(i) {
+    lbIndex = i;
+    lbImg.src = allPhotos[i];
+    lb.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox() {
+    lb.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.getElementById('lbClose').addEventListener('click', closeLightbox);
+  document.getElementById('lbPrev').addEventListener('click', () => {
+    lbIndex = (lbIndex - 1 + allPhotos.length) % allPhotos.length;
+    lbImg.src = allPhotos[lbIndex];
+  });
+  document.getElementById('lbNext').addEventListener('click', () => {
+    lbIndex = (lbIndex + 1) % allPhotos.length;
+    lbImg.src = allPhotos[lbIndex];
+  });
+  lb.addEventListener('click', e => { if (e.target === lb) closeLightbox(); });
+  document.addEventListener('keydown', e => {
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft') document.getElementById('lbPrev').click();
+    if (e.key === 'ArrowRight') document.getElementById('lbNext').click();
+  });
+
+  /* ── Fade-up on scroll ─────────────────────── */
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
